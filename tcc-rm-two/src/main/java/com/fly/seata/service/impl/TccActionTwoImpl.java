@@ -2,7 +2,6 @@ package com.fly.seata.service.impl;
 
 import com.fly.seata.service.api.TccActionTwo;
 import io.seata.rm.tcc.api.BusinessActionContext;
-import io.seata.rm.tcc.api.LocalTCC;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Service;
  * @date 2019-11-12
  * @Description:
  */
-@LocalTCC
 @Service
 public class TccActionTwoImpl implements TccActionTwo {
 
@@ -19,9 +17,10 @@ public class TccActionTwoImpl implements TccActionTwo {
     if(null == actionContext) {
       return false;
     }
-    String xid = actionContext.getXid();
-    System.out.println("TccActionOne prepare, xid:" + xid);
-    return false;
+    throw new RuntimeException("模拟抛出异常");
+//    String xid = actionContext.getXid();
+//    System.out.println("TccActionOne prepare, xid:" + xid);
+//    return false;
   }
 
   @Override

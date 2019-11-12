@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
  * @date 2019-11-11
  * @Description:
  */
-@LocalTCC
 @Service
 public class TccActionOneImpl implements TccActionOne {
 

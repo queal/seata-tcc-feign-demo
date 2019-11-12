@@ -1,6 +1,10 @@
 spring:
   application:
     name: tcc-rm-one
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_group
 
 server:
   port: 8080

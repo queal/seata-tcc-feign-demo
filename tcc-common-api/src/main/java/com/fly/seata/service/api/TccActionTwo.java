@@ -1,6 +1,7 @@
 package com.fly.seata.service.api;
 
 import io.seata.rm.tcc.api.BusinessActionContext;
+import io.seata.rm.tcc.api.LocalTCC;
 import io.seata.rm.tcc.api.TwoPhaseBusinessAction;
 
 /**
@@ -8,6 +9,7 @@ import io.seata.rm.tcc.api.TwoPhaseBusinessAction;
  * @date 2019-11-11
  * @Description:
  */
+@LocalTCC
 public interface TccActionTwo {
 
   /**
