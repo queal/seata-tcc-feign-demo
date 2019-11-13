@@ -17,10 +17,10 @@ public class TccActionTwoImpl implements TccActionTwo {
     if(null == actionContext) {
       return false;
     }
-    throw new RuntimeException("模拟抛出异常");
-//    String xid = actionContext.getXid();
-//    System.out.println("TccActionOne prepare, xid:" + xid);
-//    return false;
+    String xid = actionContext.getXid();
+    System.out.println("TccActionOne prepare, xid:" + xid);
+    return false;
+    //    throw new RuntimeException("模拟抛出异常");
   }
 
   @Override
