@@ -1,4 +1,4 @@
-package com.fly.seata.service.api;
+package com.fly.seata.service;
 
 import io.seata.rm.tcc.api.BusinessActionContext;
 import io.seata.rm.tcc.api.LocalTCC;
@@ -10,17 +10,16 @@ import io.seata.rm.tcc.api.TwoPhaseBusinessAction;
  * @Description:
  */
 @LocalTCC
-public interface TccActionOne {
+public interface TccActionTwo {
 
   /**
    * Prepare boolean.
    *
    * @param actionContext the action context
-   * @param a             the a
    * @return the boolean
    */
-  @TwoPhaseBusinessAction(name = "TccActionOne" , commitMethod = "commit", rollbackMethod = "rollback")
-  public boolean prepare(BusinessActionContext actionContext, int a);
+  @TwoPhaseBusinessAction(name = "TccActionTwo" , commitMethod = "commit", rollbackMethod = "rollback")
+  boolean prepare(BusinessActionContext actionContext, long productId,int count);
 
   /**
    * Commit boolean.
@@ -28,7 +27,7 @@ public interface TccActionOne {
    * @param actionContext the action context
    * @return the boolean
    */
-  public boolean commit(BusinessActionContext actionContext);
+  boolean commit(BusinessActionContext actionContext);
 
   /**
    * Rollback boolean.
@@ -36,6 +35,6 @@ public interface TccActionOne {
    * @param actionContext the action context
    * @return the boolean
    */
-  public boolean rollback(BusinessActionContext actionContext);
+  boolean rollback(BusinessActionContext actionContext);
 
 }

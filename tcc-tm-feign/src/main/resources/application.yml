@@ -1,6 +1,6 @@
 spring:
   application:
-    name: tcc-tm-feign
+    name: seata-tcc-tm-feign
   cloud:
     alibaba:
       seata:

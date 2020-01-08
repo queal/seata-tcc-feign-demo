@@ -1,8 +1,8 @@
 package com.fly.seata.feign.api;
 
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * @author: peijiepang
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @FeignClient(name = "tcc-rm-two")
 public interface RmTwoApi {
 
-  @RequestMapping(value="/rm2/test", method= RequestMethod.GET)
-  public String rmTwotest();
+  @GetMapping(value = "/storage/reduce/{productId}/{count}")
+  public String reduceStorage(@PathVariable("productId") long productId,@PathVariable("count") Integer count);
 
 }

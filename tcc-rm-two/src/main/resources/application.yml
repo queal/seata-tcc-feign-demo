@@ -1,6 +1,6 @@
 spring:
   application:
-    name: tcc-rm-two
+    name: seata-tcc-rm-two
   cloud:
     alibaba:
       seata:

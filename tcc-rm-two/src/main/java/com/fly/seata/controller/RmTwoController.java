@@ -1,9 +1,9 @@
 package com.fly.seata.controller;
 
-import com.fly.seata.service.api.TccActionTwo;
-import io.seata.spring.annotation.GlobalTransactional;
+import com.fly.seata.service.TccActionTwo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -17,9 +17,9 @@ public class RmTwoController {
   @Autowired
   private TccActionTwo tccActionTwo;
 
-  @GetMapping(value = "/rm2/test")
-  public String test(){
-    tccActionTwo.prepare(null,"1");
+  @GetMapping(value = "/storage/reduce/{productId}/{count}")
+  public String reduceStorage(@PathVariable("productId") long productId,@PathVariable("count") Integer count){
+    tccActionTwo.prepare(null,productId,count);
     return "ok";
   }
 

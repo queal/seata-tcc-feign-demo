@@ -1,10 +1,13 @@
 package com.fly.seata.controller;
 
+import com.fly.seata.dto.OrderDTO;
 import com.fly.seata.feign.api.RmOneApi;
 import com.fly.seata.feign.api.RmTwoApi;
 import io.seata.spring.annotation.GlobalTransactional;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -23,11 +26,16 @@ public class TestController {
 
   @GlobalTransactional
   @GetMapping("/tm/test")
-  public String test(){
-    String result = rmOneApi.rmOnetest();
-    System.out.println("result:"+result);
-    result = rmTwoApi.rmTwotest();
-    System.out.println("result:"+result);
+  public String test(HttpServletRequest request,@RequestBody OrderDTO orderDTO){
+    String result = rmOneApi.createOrder(orderDTO);
+    String type = request.getHeader("type");
+    if(null !=type && type.equalsIgnoreCase("hot")){
+      //更新操作-热点数据测试
+      rmTwoApi.reduceStorage(orderDTO.getProductId(),orderDTO.getCount());
+    }else{
+      //插入操作-非热点数据
+
+    }
     return "ok";
   }
 

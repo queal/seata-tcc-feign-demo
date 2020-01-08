@@ -1,6 +1,6 @@
 spring:
   application:
-    name: tcc-rm-one
+    name: seata-tcc-rm-one
   cloud:
     alibaba:
       seata:

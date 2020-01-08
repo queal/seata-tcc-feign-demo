@@ -1,8 +1,11 @@
 package com.fly.seata.feign.api;
 
+import com.fly.seata.dto.OrderDTO;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.core.annotation.Order;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * @author: peijiepang
@@ -12,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @FeignClient(value = "tcc-rm-one")
 public interface RmOneApi {
 
-  @RequestMapping(value="/rm1/test", method= RequestMethod.GET)
-  public String rmOnetest();
+  @PostMapping(value = "/order/create",consumes = MediaType.APPLICATION_JSON_VALUE)
+  public String createOrder(@RequestBody OrderDTO order);
 
 }
