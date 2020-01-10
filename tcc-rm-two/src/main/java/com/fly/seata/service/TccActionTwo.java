@@ -19,8 +19,8 @@ public interface TccActionTwo {
    * @param actionContext the action context
    * @return the boolean
    */
-  @TwoPhaseBusinessAction(name = "TccActionTwo" , commitMethod = "commit", rollbackMethod = "rollback")
-  boolean prepare(BusinessActionContext actionContext, @BusinessActionContextParameter(paramName = "productId")long productId,@BusinessActionContextParameter(paramName = "count")int count);
+  @TwoPhaseBusinessAction(name = "TccActionTwo" , commitMethod = "storageReduceCommit", rollbackMethod = "storageReduceRollback")
+  boolean storageReducePrepare(BusinessActionContext actionContext, @BusinessActionContextParameter(paramName = "productId")long productId,@BusinessActionContextParameter(paramName = "count")int count);
 
   /**
    * Commit boolean.
@@ -28,7 +28,7 @@ public interface TccActionTwo {
    * @param actionContext the action context
    * @return the boolean
    */
-  boolean commit(BusinessActionContext actionContext);
+  boolean storageReduceCommit(BusinessActionContext actionContext);
 
   /**
    * Rollback boolean.
@@ -36,6 +36,6 @@ public interface TccActionTwo {
    * @param actionContext the action context
    * @return the boolean
    */
-  boolean rollback(BusinessActionContext actionContext);
+  boolean storageReduceRollback(BusinessActionContext actionContext);
 
 }

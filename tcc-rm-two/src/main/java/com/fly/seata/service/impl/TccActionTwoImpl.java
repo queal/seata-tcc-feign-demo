@@ -22,21 +22,21 @@ public class TccActionTwoImpl implements TccActionTwo {
   private StorageDao storageDao;
 
   @Override
-  public boolean prepare(BusinessActionContext actionContext,long productId,int count) {
+  public boolean storageReducePrepare(BusinessActionContext actionContext,long productId,int count) {
     if(null == actionContext) {
       return false;
     }
     String xid = actionContext.getXid();
-    LOGGER.info("TccActionOne prepare, xid:" + xid);
+    LOGGER.info("TccActionOne storageReducePrepare, xid:" + xid);
     storageDao.fozen(productId,count);
     LOGGER.info(actionContext.toString());
     return false;
   }
 
   @Override
-  public boolean commit(BusinessActionContext actionContext) {
+  public boolean storageReduceCommit(BusinessActionContext actionContext) {
     String xid = actionContext.getXid();
-    LOGGER.info("TccActionOne commit, xid:" + xid);
+    LOGGER.info("TccActionOne storageReduceCommit, xid:" + xid);
     LOGGER.info(actionContext.toString());
     long productId = Long.valueOf(actionContext.getActionContext().get("productId").toString()) ;
     int count = Integer.valueOf(actionContext.getActionContext().get("count").toString());
@@ -45,9 +45,9 @@ public class TccActionTwoImpl implements TccActionTwo {
   }
 
   @Override
-  public boolean rollback(BusinessActionContext actionContext) {
+  public boolean storageReduceRollback(BusinessActionContext actionContext) {
     String xid = actionContext.getXid();
-    LOGGER.info("TccActionOne rollback, xid:" + xid);
+    LOGGER.info("TccActionOne storageReduceRollback, xid:" + xid);
     long productId = Long.valueOf(actionContext.getActionContext().get("productId").toString()) ;
     int count = Integer.valueOf(actionContext.getActionContext().get("count").toString());
     storageDao.rollback(productId,count);
