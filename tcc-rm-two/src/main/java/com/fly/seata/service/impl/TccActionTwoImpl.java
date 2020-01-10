@@ -29,6 +29,7 @@ public class TccActionTwoImpl implements TccActionTwo {
     String xid = actionContext.getXid();
     LOGGER.info("TccActionOne prepare, xid:" + xid);
     storageDao.fozen(productId,count);
+    LOGGER.info(actionContext.toString());
     return false;
   }
 
@@ -36,7 +37,10 @@ public class TccActionTwoImpl implements TccActionTwo {
   public boolean commit(BusinessActionContext actionContext) {
     String xid = actionContext.getXid();
     LOGGER.info("TccActionOne commit, xid:" + xid);
-//    storageDao.reduce()
+    LOGGER.info(actionContext.toString());
+    long productId = Long.valueOf(actionContext.getActionContext().get("productId").toString()) ;
+    int count = Integer.valueOf(actionContext.getActionContext().get("count").toString());
+    storageDao.reduce(productId,count);
     return true;
   }
 
@@ -44,7 +48,9 @@ public class TccActionTwoImpl implements TccActionTwo {
   public boolean rollback(BusinessActionContext actionContext) {
     String xid = actionContext.getXid();
     LOGGER.info("TccActionOne rollback, xid:" + xid);
-//    storageDao.rollback()
+    long productId = Long.valueOf(actionContext.getActionContext().get("productId").toString()) ;
+    int count = Integer.valueOf(actionContext.getActionContext().get("count").toString());
+    storageDao.rollback(productId,count);
     return true;
   }
 

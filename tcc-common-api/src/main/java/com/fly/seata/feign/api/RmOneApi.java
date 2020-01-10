@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @date 2019-11-12
  * @Description:
  */
-@FeignClient(value = "tcc-rm-one")
+@FeignClient(value = "seata-tcc-rm-one")
 public interface RmOneApi {
 
   @PostMapping(value = "/order/create",consumes = MediaType.APPLICATION_JSON_VALUE)

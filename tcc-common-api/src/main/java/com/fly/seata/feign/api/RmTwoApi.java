@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @date 2019-11-12
  * @Description:
  */
-@FeignClient(name = "tcc-rm-two")
+@FeignClient(name = "seata-tcc-rm-two")
 public interface RmTwoApi {
 
   @GetMapping(value = "/storage/reduce/{productId}/{count}")

@@ -15,6 +15,11 @@ public class OrderDTO {
   private Long id;
 
   /**
+   * 订单号
+   */
+  private String orderNo;
+
+  /**
    * 用户id
    */
   private Long userId;
@@ -87,5 +92,13 @@ public class OrderDTO {
 
   public void setStatus(Integer status) {
     this.status = status;
+  }
+
+  public String getOrderNo() {
+    return orderNo;
+  }
+
+  public void setOrderNo(String orderNo) {
+    this.orderNo = orderNo;
   }
 }

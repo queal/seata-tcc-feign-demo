@@ -1,6 +1,5 @@
 package com.fly.seata.dao;
 
-import com.fly.seata.domain.Order;
 import com.fly.seata.dto.OrderDTO;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;

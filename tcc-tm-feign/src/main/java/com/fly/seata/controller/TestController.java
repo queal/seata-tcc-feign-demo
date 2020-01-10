@@ -6,7 +6,7 @@ import com.fly.seata.feign.api.RmTwoApi;
 import io.seata.spring.annotation.GlobalTransactional;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +25,7 @@ public class TestController {
   private RmTwoApi rmTwoApi;
 
   @GlobalTransactional
-  @GetMapping("/tm/test")
+  @PostMapping("/tm/purchase")
   public String test(HttpServletRequest request,@RequestBody OrderDTO orderDTO){
     String result = rmOneApi.createOrder(orderDTO);
     String type = request.getHeader("type");
