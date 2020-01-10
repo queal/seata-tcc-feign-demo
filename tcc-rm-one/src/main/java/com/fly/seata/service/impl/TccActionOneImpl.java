@@ -1,5 +1,6 @@
 package com.fly.seata.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.fly.seata.dao.OrderDao;
 import com.fly.seata.dto.OrderDTO;
 import com.fly.seata.service.TccActionOne;
@@ -23,7 +24,7 @@ public class TccActionOneImpl implements TccActionOne {
   private OrderDao orderDao;
 
   @Override
-  public boolean createOrder(BusinessActionContext actionContext, OrderDTO order) {
+  public boolean createOrder(BusinessActionContext actionContext,OrderDTO order) {
     if(null == actionContext){
       return false;
     }
@@ -43,8 +44,8 @@ public class TccActionOneImpl implements TccActionOne {
   @Override
   public boolean rollback(BusinessActionContext actionContext) {
     String xid = actionContext.getXid();
-
-    //考虑空回滚
+    String orderNo = ((JSONObject) actionContext.getActionContext("order")).getString("orderNo");
+    orderDao.delete(orderNo);
     LOGGER.info("TccActionOne rollback, xid:" + xid);
     return true;
   }

@@ -13,6 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface RmTwoApi {
 
   @GetMapping(value = "/storage/reduce/{productId}/{count}")
-  public String reduceStorage(@PathVariable("productId") long productId,@PathVariable("count") Integer count);
+  public Boolean reduceStorage(@PathVariable("productId") long productId,@PathVariable("count") Integer count);
 
 }

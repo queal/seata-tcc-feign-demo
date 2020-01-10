@@ -38,8 +38,8 @@ public class TccActionTwoImpl implements TccActionTwo {
     String xid = actionContext.getXid();
     LOGGER.info("TccActionOne storageReduceCommit, xid:" + xid);
     LOGGER.info(actionContext.toString());
-    long productId = Long.valueOf(actionContext.getActionContext().get("productId").toString()) ;
-    int count = Integer.valueOf(actionContext.getActionContext().get("count").toString());
+    long productId = Long.valueOf(actionContext.getActionContext("productId").toString()) ;
+    int count = Integer.valueOf(actionContext.getActionContext("count").toString());
     storageDao.reduce(productId,count);
     return true;
   }
@@ -48,8 +48,8 @@ public class TccActionTwoImpl implements TccActionTwo {
   public boolean storageReduceRollback(BusinessActionContext actionContext) {
     String xid = actionContext.getXid();
     LOGGER.info("TccActionOne storageReduceRollback, xid:" + xid);
-    long productId = Long.valueOf(actionContext.getActionContext().get("productId").toString()) ;
-    int count = Integer.valueOf(actionContext.getActionContext().get("count").toString());
+    long productId = Long.valueOf(actionContext.getActionContext("productId").toString()) ;
+    int count = Integer.valueOf(actionContext.getActionContext("count").toString());
     storageDao.rollback(productId,count);
     return true;
   }

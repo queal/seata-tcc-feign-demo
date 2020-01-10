@@ -2,7 +2,6 @@ package com.fly.seata.feign.api;
 
 import com.fly.seata.dto.OrderDTO;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.core.annotation.Order;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

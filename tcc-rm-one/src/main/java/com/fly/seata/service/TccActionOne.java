@@ -2,6 +2,7 @@ package com.fly.seata.service;
 
 import com.fly.seata.dto.OrderDTO;
 import io.seata.rm.tcc.api.BusinessActionContext;
+import io.seata.rm.tcc.api.BusinessActionContextParameter;
 import io.seata.rm.tcc.api.LocalTCC;
 import io.seata.rm.tcc.api.TwoPhaseBusinessAction;
 
@@ -21,7 +22,7 @@ public interface TccActionOne {
    * @return the boolean
    */
   @TwoPhaseBusinessAction(name = "TccActionOne" , commitMethod = "commit", rollbackMethod = "rollback")
-  boolean createOrder(BusinessActionContext actionContext, OrderDTO order);
+  boolean createOrder(BusinessActionContext actionContext,@BusinessActionContextParameter(paramName = "order") OrderDTO order);
 
   /**
    * Commit boolean.

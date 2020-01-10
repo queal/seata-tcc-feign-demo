@@ -18,9 +18,8 @@ public class RmTwoController {
   private TccActionTwo tccActionTwo;
 
   @GetMapping(value = "/storage/reduce/{productId}/{count}")
-  public String reduceStorage(@PathVariable("productId") long productId,@PathVariable("count") Integer count){
-    tccActionTwo.storageReducePrepare(null,productId,count);
-    return "ok";
+  public Boolean reduceStorage(@PathVariable("productId") long productId,@PathVariable("count") Integer count){
+    return tccActionTwo.storageReducePrepare(null,productId,count);
   }
 
 }
