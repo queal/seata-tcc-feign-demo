@@ -1,8 +1,10 @@
 package com.fly.seata.service.impl;
 
 import com.fly.seata.dao.StorageDao;
+import com.fly.seata.domain.Storage;
 import com.fly.seata.service.TccActionTwo;
 import io.seata.rm.tcc.api.BusinessActionContext;
+import io.seata.rm.tcc.api.BusinessActivityContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +32,7 @@ public class TccActionTwoImpl implements TccActionTwo {
     LOGGER.info("TccActionOne storageReducePrepare, xid:" + xid);
     storageDao.fozen(productId,count);
     LOGGER.info(actionContext.toString());
-    return false;
+    return true;
   }
 
   @Override

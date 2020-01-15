@@ -15,4 +15,6 @@ public interface RmTwoApi {
   @GetMapping(value = "/storage/reduce/{productId}/{count}")
   public Boolean reduceStorage(@PathVariable("productId") long productId,@PathVariable("count") Integer count);
 
+  @GetMapping(value = "/storage/increase")
+  public void increaseStorage();
 }

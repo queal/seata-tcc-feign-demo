@@ -1,8 +1,11 @@
 package com.fly.seata.dao;
 
+import com.fly.seata.domain.Storage;
+import com.fly.seata.dto.OrderDTO;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Update;
 
@@ -46,8 +49,9 @@ public interface StorageDao {
    * 插入库存
    * @return
    */
-  @Insert("INSERT INTO `storage`(`product_id`, `total`, `used`, `residue`) VALUES (1000, 1000000, 0, 1000000)")
-  int insert();
+  @Insert("INSERT INTO `storage`(`product_id`, `total`, `used`, `residue`) VALUES (#{productId}, #{total}, 0, #{used})")
+  @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
+  int insert(Storage storage);
 
   /**
    * 删除库存
