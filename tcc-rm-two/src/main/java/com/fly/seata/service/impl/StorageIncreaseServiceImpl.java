@@ -3,8 +3,8 @@ package com.fly.seata.service.impl;
 import com.fly.seata.dao.StorageDao;
 import com.fly.seata.domain.Storage;
 import com.fly.seata.service.StorageIncreaseService;
+import io.seata.rm.tcc.TwoPhaseResult;
 import io.seata.rm.tcc.api.BusinessActionContext;
-import io.seata.rm.tcc.api.BusinessActivityContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,12 +33,14 @@ public class StorageIncreaseServiceImpl implements StorageIncreaseService {
     }
 
     @Override
-    public void storageIncreaseCommit(BusinessActionContext actionContext) {
+    public TwoPhaseResult storageIncreaseCommit(BusinessActionContext actionContext) {
         LOGGER.info("storageIncreaseCommit commit, xid:{} activityContext:{}" ,actionContext);
+        return new TwoPhaseResult(true,"分支提交成功");
     }
 
     @Override
-    public void storageIncreaseRollback(BusinessActionContext actionContext) {
+    public TwoPhaseResult storageIncreaseRollback(BusinessActionContext actionContext) {
         LOGGER.info("storageIncreaseRollback commit, xid:{} activityContext:{}" ,actionContext);
+        return new TwoPhaseResult(true,"分支回滚成功");
     }
 }

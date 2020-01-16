@@ -1,11 +1,9 @@
 package com.fly.seata.service;
 
+import io.seata.rm.tcc.TwoPhaseResult;
 import io.seata.rm.tcc.api.BusinessActionContext;
-import io.seata.rm.tcc.api.BusinessActionContextParameter;
-import io.seata.rm.tcc.api.BusinessActivityContext;
 import io.seata.rm.tcc.api.LocalTCC;
 import io.seata.rm.tcc.api.TwoPhaseBusinessAction;
-import javax.print.attribute.standard.MediaSize.NA;
 
 /**
  * @author: peijiepang
@@ -23,9 +21,9 @@ public interface StorageIncreaseService {
     @TwoPhaseBusinessAction(name = "storageIncrease",commitMethod = "storageIncreaseCommit",rollbackMethod = "storageIncreaseRollback")
     void storageIncreasePrepare(BusinessActionContext actionContext);
 
-    void storageIncreaseCommit(BusinessActionContext actionContext);
+    TwoPhaseResult storageIncreaseCommit(BusinessActionContext actionContext);
 
-    void storageIncreaseRollback(BusinessActionContext actionContext);
+    TwoPhaseResult storageIncreaseRollback(BusinessActionContext actionContext);
 
 
 }

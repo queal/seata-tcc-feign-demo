@@ -2,7 +2,6 @@ package com.fly.seata.controller;
 
 import com.fly.seata.service.StorageIncreaseService;
 import com.fly.seata.service.TccActionTwo;
-import io.seata.rm.tcc.api.BusinessActivityContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,8 +28,7 @@ public class RmTwoController {
 
   @GetMapping(value = "/storage/increase")
   public void increaseStorage(){
-    BusinessActivityContext businessActivityContext = new BusinessActivityContext();
-    storageIncreasePrepare.storageIncreasePrepare(null,businessActivityContext);
+    storageIncreasePrepare.storageIncreasePrepare(null);
   }
 
 }
